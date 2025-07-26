@@ -1,0 +1,69 @@
+/* src/pages/Nurses.css */
+
+.nurses-page { display:flex; flex-direction:column; gap:1.5rem; }
+
+/* Stats grid */
+.stats-grid {
+  display:grid; grid-template-columns:1fr; gap:1rem;
+}
+@media(min-width:768px) { .stats-grid { grid-template-columns:repeat(4,1fr); } }
+
+.stat-card {
+  background:#fff; padding:1rem; border:1px solid #e5e7eb;
+  border-radius:.5rem; display:flex; justify-content:space-between; align-items:center;
+}
+.stat-card p { margin:0; font-size:.875rem; color:#6b7280; }
+.stat-card h2 { margin:0; font-size:1.5rem; font-weight:600; }
+.icon-blue   { color:#2563eb; }
+.icon-green  { color:#16a34a; }
+.icon-yellow { color:#d97706; }
+.icon-purple { color:#7c3aed; }
+.text-green  { color:#16a34a; }
+.text-yellow { color:#d97706; }
+
+/* Table badges */
+.status-badge {
+  display:inline-block; padding:.25rem .5rem; border-radius:.375rem; font-size:.75rem;
+}
+.status-badge.active   { background:#d1fae5; color:#065f46; }
+.status-badge.on-leave { background:#fef9c3; color:#92400e; }
+
+/* Detail modal */
+.detail-grid {
+  display:grid; grid-template-columns:1fr; gap:1rem; margin-bottom:1rem;
+}
+@media(min-width:640px) { .detail-grid { grid-template-columns:1fr 1fr; } }
+.detail-col h4 { margin-bottom:.5rem; font-weight:600; }
+.detail-col p { margin:.25rem 0; display:flex; align-items:center; gap:.5rem; }
+
+/* Tag list */
+.tag-list {
+  display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.5rem;
+}
+.tag-cyan {
+  background:#cffafe; color:#075985; padding:.25rem .5rem; border-radius:9999px; font-size:.75rem;
+}
+
+/* Add form */
+.add-form input,
+.add-form select,
+.add-form textarea {
+  width:100%; padding:.5rem; border:1px solid #d1d5db; border-radius:.375rem;
+  font-size:.875rem; background:#fff; color:#111827;
+}
+.form-grid {
+  display:grid; grid-template-columns:1fr; gap:1rem;
+}
+@media(min-width:640px) { .form-grid { grid-template-columns:repeat(2,1fr); } }
+.form-actions {
+  display:flex; justify-content:flex-end; gap:1rem; margin-top:1rem;
+}
+.form-actions button {
+  padding:.5rem 1rem; border-radius:.375rem; font-weight:500;
+}
+.form-actions button[type="button"] {
+  background:#e5e7eb; color:#374151;
+}
+.form-actions button[type="submit"] {
+  background:#06b6d4; color:#fff;
+}

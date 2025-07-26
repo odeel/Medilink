@@ -1,0 +1,110 @@
+/* src/pages/Doctors.css */
+
+.doctors-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .stats-grid { grid-template-columns: repeat(4,1fr); }
+}
+.stat-card {
+  background: #fff;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.stat-card p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+.stat-card h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.green-icon  { color: #10b981; }
+.purple-icon { color: #8b5cf6; }
+.orange-icon { color: #f97316; }
+
+/* Status badges */
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.status-active   { background: #d1fae5; color: #065f46; }
+.status-onleave  { background: #fef9c3; color: #92400e; }
+.status-inactive { background: #f3f4f6; color: #374151; }
+
+/* Details layout */
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .details-grid { grid-template-columns: 1fr 1fr; }
+}
+.details-grid h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.info-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Qualifications & Availability badges */
+.services-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.service-badge {
+  background: #cffafe;
+  color: #0e7490;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+}
+.badge-online {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+/* Add-form placeholder */
+.add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+/* ...you can flesh out .add-form just like in Coupons.css */

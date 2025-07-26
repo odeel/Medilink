@@ -1,0 +1,129 @@
+/* src/components/DataTable.css */
+
+.datatable {
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Search bar */
+.datatable__search {
+  position: relative;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+.datatable__search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+}
+.datatable__search-input {
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.datatable__search-input:focus {
+  outline: none;
+  border-color: #06b6d4;
+  box-shadow: 0 0 0 2px rgba(6,182,212,0.5);
+}
+
+/* Table */
+.datatable__table-wrapper {
+  overflow-x: auto;
+}
+.datatable__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.datatable__table th,
+.datatable__table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.875rem;
+}
+.datatable__table thead {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #6b7280;
+}
+.datatable__table tbody tr:hover {
+  background: #f3f4f6;
+}
+
+/* Sortable header */
+.datatable__table th.sortable {
+  cursor: pointer;
+}
+.datatable__sort-indicator {
+  margin-left: 0.25rem;
+}
+
+/* Actions column */
+.actions-header {
+  text-align: right;
+}
+.actions-cell {
+  text-align: right;
+  white-space: nowrap;
+}
+.actions-cell button {
+  background: none;
+  border: none;
+  margin-left: 0.5rem;
+  padding: 0.25rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 0.25rem;
+}
+.actions-cell button:hover {
+  background: #e0f2fe;
+}
+.btn-edit:hover {
+  background: #e0e7ff;
+}
+.btn-delete:hover {
+  background: #fee2e2;
+}
+
+/* Pagination */
+.datatable__pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+.datatable__page-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.page-btn {
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.page-btn:hover:not(:disabled) {
+  background: #f3f4f6;
+}
+.page-number {
+  min-width: 4.5rem;
+  text-align: center;
+}

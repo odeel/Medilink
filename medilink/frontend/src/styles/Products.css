@@ -1,0 +1,85 @@
+/* src/pages/Products.css */
+
+.products-page { display:flex; flex-direction:column; gap:1.5rem; }
+
+/* Alerts */
+.alert {
+  border-radius:.5rem; padding:1rem; border:1px solid; margin-bottom:1rem;
+}
+.alert-header { display:flex; align-items:center; gap:.5rem; font-weight:600; margin-bottom:.5rem; }
+.alert-red    { background:#fef2f2; border-color:#fecaca; color:#991b1b; }
+.alert-yellow { background:#fffbeb; border-color:#fef3c7; color:#92400e; }
+
+/* Stats grid */
+.stats-grid {
+  display:grid; grid-template-columns:1fr; gap:1rem;
+}
+@media(min-width:768px){ stats-grid{ grid-template-columns:repeat(4,1fr);} }
+
+.stat-card {
+  background:#fff; padding:1rem; border:1px solid #e5e7eb;
+  border-radius:.5rem; display:flex; align-items:center; justify-content:space-between;
+}
+.stat-card p { margin:0; font-size:.875rem; color:#6b7280; }
+.stat-card h2 { margin:0; font-size:1.5rem; font-weight:600; }
+.icon-blue  { color:#2563eb; }
+.icon-green { color:#16a34a; }
+.icon-yellow{ color:#ca8a04; }
+.icon-red   { color:#dc2626; }
+.text-green { color:#16a34a; }
+.text-yellow{ color:#ca8a04; }
+.text-red   { color:#dc2626; }
+
+/* Table badges */
+.stock-badge {
+  font-weight:500;
+}
+.stock-badge.ok   { color:#16a34a; }
+.stock-badge.low  { color:#ca8a04; }
+.stock-badge.out  { color:#dc2626; }
+
+.status-badge {
+  display:inline-block; padding:.25rem .5rem; border-radius:.375rem; font-size:.75rem;
+}
+.status-badge.active   { background:#d1fae5; color:#065f46; }
+.status-badge.inactive { background:#e5e7eb; color:#374151; }
+
+/* Detail modal */
+.detail-flex {
+  display:flex; flex-direction:column; gap:1rem;
+}
+@media(min-width:640px){
+  .detail-flex { flex-direction:row; }
+}
+.detail-img {
+  width:6rem; height:6rem; object-fit:cover; border-radius:.5rem;
+}
+.detail-list {
+  list-style:none; padding:0; margin:1rem 0 0;
+}
+.detail-list li { margin-bottom:.5rem; }
+
+/* Add form */
+.add-form input,
+.add-form select,
+.add-form textarea {
+  width:100%; padding:.5rem; border:1px solid #d1d5db; border-radius:.375rem; font-size:.875rem;
+}
+.form-grid {
+  display:grid; grid-template-columns:1fr; gap:1rem;
+}
+@media(min-width:640px){
+  .form-grid { grid-template-columns:repeat(2,1fr); }
+}
+.form-actions {
+  display:flex; justify-content:flex-end; gap:1rem; margin-top:1rem;
+}
+.form-actions button {
+  padding:.5rem 1rem; border-radius:.375rem; font-weight:500;
+}
+.form-actions button[type="button"] {
+  background:#e5e7eb; color:#374151;
+}
+.form-actions button[type="submit"] {
+  background:#06b6d4; color:#fff;
+}
