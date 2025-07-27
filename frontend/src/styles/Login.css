@@ -1,0 +1,110 @@
+/* Fullscreen container with background */
+.login-container {
+  background: linear-gradient(to bottom, #1f5652, #58af8c);
+  max-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card box */
+.login-box {
+  background-color: #ffffff;
+  color: #1e293b;
+  padding: 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-height: 500px;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo wrapper */
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* Logo background circle */
+.icon-circle {
+  background-color: #77c5be;
+  padding: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Logo image */
+.icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Title */
+.login-box h2 {
+  text-align: center;
+  margin: 10px 0 5px;
+}
+
+/* Subtitle */
+.subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+/* Form styling */
+.login-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.login-form input {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #f9fafb;
+    
+
+}
+
+.login-form button {
+  width: 96%;
+  padding: 12px;
+  background-color: #6ca795;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  align-self: center;
+}
+
+.login-form button:hover {
+  background-color: #7e948e;
+}
+
+/* Demo credentials section */
+.credentials {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.credentials h4 {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
