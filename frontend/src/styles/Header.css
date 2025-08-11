@@ -1,0 +1,20 @@
+/* src/components/Header/Header.css */
+.header {
+  margin-bottom: var(--header-margin-bottom, 30px);
+  /* optional: choose a font-family if you like */
+}
+
+.header__title {
+  margin: 0 0 5px 0; /* top right bottom left */
+  color: var(--header-title-color, #111); /* fallback if var not set */
+  font-size: 28px;   /* adjust to match MUI h2 if you want */
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.header__subtitle {
+  margin: 0;
+  color: var(--header-subtitle-color, #4caf50);
+  font-size: 16px; /* approximate MUI h5 */
+  font-weight: 500;
+}
