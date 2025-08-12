@@ -1,0 +1,9 @@
+.product-form { display:flex; flex-direction: column; gap:8px; }
+.product-form__label { font-size:13px; color:#222; margin-top:6px; }
+.product-form__input { padding:8px 10px; border-radius:6px; border:1px solid #ddd; font-size:14px; }
+.product-form__textarea { min-height:80px; padding:8px 10px; border-radius:6px; border:1px solid #ddd; font-size:14px; resize:vertical; }
+.product-form__error { color: #b00020; background: #ffecee; padding:8px; border-radius:6px; }
+.product-form__actions { display:flex; gap:8px; justify-content: flex-end; margin-top:12px; }
+.product-form__btn { padding:8px 12px; border-radius:6px; cursor:pointer; border: none; }
+.product-form__btn--submit { background: #2f9d87; color: #fff; }
+.product-form__btn--cancel { background: #eee; color: #333; }

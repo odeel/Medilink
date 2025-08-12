@@ -1,0 +1,88 @@
+/* src/pages/AdminDashboard.css */
+
+
+/* AdminDashboard.css - simple layout & cards */
+
+.admin-dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* main content sits to the right of the Sidebar */
+.admin-dashboard__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* page content padding */
+.admin-dashboard__content {
+  padding: 20px;
+  color: #fff; /* will be overridden by card inline colors */
+}
+
+/* summary cards row */
+.admin-dashboard__summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+/* each card */
+.summary-card {
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 90px;
+}
+
+.summary-card__title {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.summary-card__value {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+/* recent section */
+.admin-dashboard__recent {
+  background: transparent;
+  border-radius: 8px;
+  padding-top: 8px;
+}
+
+.recent-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.recent-grid {
+  background: transparent;
+  border-radius: 8px;
+  padding: 8px 0;
+}
+
+.admin-dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-dashboard__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.admin-dashboard__content {
+  padding: 20px;
+}

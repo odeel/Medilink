@@ -1,0 +1,9 @@
+.medicine-form { display:flex; flex-direction: column; gap:8px; }
+.medicine-form__label { font-size:13px; color:#222; margin-top:6px; }
+.medicine-form__input { padding:8px 10px; border-radius:6px; border:1px solid #ddd; font-size:14px; }
+.medicine-form__textarea { min-height:70px; padding:8px 10px; border-radius:6px; border:1px solid #ddd; font-size:14px; resize:vertical; }
+.medicine-form__error { color: #b00020; background: #ffecee; padding:8px; border-radius:6px; }
+.medicine-form__actions { display:flex; gap:8px; justify-content: flex-end; margin-top:12px; }
+.medicine-form__btn { padding:8px 12px; border-radius:6px; cursor:pointer; border: none; }
+.medicine-form__btn--submit { background: #2f9d87; color: #fff; }
+.medicine-form__btn--cancel { background: #eee; color: #333; }

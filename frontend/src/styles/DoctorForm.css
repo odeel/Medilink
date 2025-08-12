@@ -1,0 +1,9 @@
+.doctor-form { display:flex; flex-direction: column; gap:8px; }
+.doctor-form__label { font-size:13px; color:#222; }
+.doctor-form__input { padding:8px; border-radius:6px; border:1px solid #ddd; }
+.doctor-form__textarea { min-height:80px; padding:8px; border-radius:6px; border:1px solid #ddd; resize:vertical; }
+.doctor-form__error { color:#b00020; background:#ffecee; padding:8px; border-radius:6px; }
+.doctor-form__actions { display:flex; justify-content:flex-end; gap:8px; }
+.doctor-form__btn { padding:8px 12px; border-radius:6px; border:none; cursor:pointer; }
+.doctor-form__btn--submit { background:#2f9d87; color:#fff; }
+.doctor-form__btn--cancel { background:#eee; color:#333; }

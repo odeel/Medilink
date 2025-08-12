@@ -1,12 +1,25 @@
-// src/components/Sidebar/Sidebar.jsx
+// src/global/SideBar.js
 import React, { useState } from "react";
-import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
+
+// v0.x API exports (ProSidebar + parts)
+import {
+  ProSidebar,
+  Menu,
+  MenuItem,
+  SubMenu,
+  SidebarHeader,
+  SidebarContent,
+  SidebarFooter,
+} from "react-pro-sidebar";
+
+// v0.x requires the library CSS
+import "react-pro-sidebar/dist/css/styles.css";
+
 import { useTheme } from "@mui/material/styles";
 import { Link } from "react-router-dom";
-import "react-pro-sidebar/dist/css/styles.css";
-import { tokens } from "../../theme"; // adjust path if your theme is elsewhere
+import { tokens } from "../Theme"; // adjust if your Theme file path differs
 
-// icons (MUI) — allowed
+// MUI icons (allowed)
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
@@ -20,18 +33,16 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
-import "./Sidebar.css"; // external CSS file
+import "../styles/Sidebar.css"; // custom styles live here
 
-// Small presentational wrapper used for each item (still uses MenuItem from pro-sidebar)
+// Small wrapper for a menu item (keeps our code DRY)
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
     <MenuItem
       active={selected === title}
-      style={{
-        color: colors.grey[100],
-      }}
+      style={{ color: colors?.grey?.[100] || "#fff" }}
       onClick={() => setSelected(title)}
       icon={icon}
     >
@@ -41,57 +52,42 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   );
 };
 
-const Sidebar = () => {
-  // 1) theme + color tokens (we only use these to set CSS variables)
+const SideBar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  // 2) component state
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState("Dashboard");
-
-  // 3) Set CSS variables on the wrapper div so CSS file can use them.
-  //    React allows custom properties in style object (must be strings like '--name').
-  const cssVars = {
-    "--sidebar-bg": colors.primary[400],
-    "--sidebar-text": colors.grey[100],
-    "--sidebar-hover": colors.blueAccent ? colors.blueAccent[400] : colors.greenAccent[400],
-    "--sidebar-active": colors.greenAccent[500],
-  };
+  const [selected, setSelected] = useState("Overlook");
 
   return (
-    // wrapper passes theme values into CSS via custom properties
-    <div className="sidebar" style={cssVars}>
+    <div
+      className="sidebar-wrapper"
+      // pass theme colors as CSS variables for SideBar.css usage
+      style={{
+        "--sidebar-bg": colors?.primary?.[400] || "#1f2937",
+        "--sidebar-text": colors?.grey?.[100] || "#f8fafc",
+        "--sidebar-hover": colors?.blueAccent?.[400] || "#86f",
+        "--sidebar-active": colors?.greenAccent?.[500] || "#4cceac",
+      }}
+    >
       <ProSidebar collapsed={isCollapsed}>
-        <Menu iconShape="square">
-          {/* Header / Toggle row */}
-          <MenuItem
-            onClick={() => setIsCollapsed(!isCollapsed)}
-            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
-            style={{
-              margin: "10px 0 20px 0",
-              color: "var(--sidebar-text)",
-            }}
-          >
-            {!isCollapsed && (
-              <div className="sidebar__header">
-                <div className="sidebar__header-title">ADMINIS</div>
-                <button
-                  className="sidebar__toggle-btn"
-                  onClick={() => setIsCollapsed(!isCollapsed)}
-                  aria-label="Toggle sidebar"
-                >
-                  <MenuOutlinedIcon fontSize="small" />
-                </button>
-              </div>
-            )}
-          </MenuItem>
+        <SidebarHeader>
+          <div className="sidebar-header-inner">
+            {!isCollapsed && <div className="sidebar-brand">ADMINIS</div>}
+            <button
+              className="sidebar-toggle-btn"
+              onClick={() => setIsCollapsed(!isCollapsed)}
+              aria-label="Toggle sidebar"
+            >
+              <MenuOutlinedIcon />
+            </button>
+          </div>
+        </SidebarHeader>
 
-          {/* Profile block (only show when expanded) */}
+        <SidebarContent>
           {!isCollapsed && (
             <div className="sidebar__profile">
               <div className="sidebar__profile-avatar-wrap">
-                {/* path relative to build — adjust if your assets live elsewhere */}
                 <img
                   alt="profile-user"
                   className="sidebar__profile-avatar"
@@ -105,96 +101,35 @@ const Sidebar = () => {
             </div>
           )}
 
-          {/* Menu items */}
-          <div className="sidebar__menu-block" style={{ paddingLeft: isCollapsed ? undefined : "10%" }}>
-            <Item
-              title="Dashboard"
-              to="/"
-              icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+          <Menu iconShape="square">
+            {/* Overlook = default */}
+            <Item title="Overlook" to="/app" icon={<HomeOutlinedIcon />} selected={selected} setSelected={setSelected} />
 
             <div className="sidebar__section-title">Data</div>
-            <Item
-              title="Manage Team"
-              to="/team"
-              icon={<PeopleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Contacts Information"
-              to="/contacts"
-              icon={<ContactsOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Invoices Balances"
-              to="/invoices"
-              icon={<ReceiptOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            <Item title="Clinics" to="/app/clinics" icon={<PeopleOutlinedIcon />} selected={selected} setSelected={setSelected} />
+            <Item title="Medicines" to="/app/medicines" icon={<ReceiptOutlinedIcon />} selected={selected} setSelected={setSelected} />
+            <Item title="Doctors" to="/app/doctors" icon={<PersonOutlinedIcon />} selected={selected} setSelected={setSelected} />
+            <Item title="Nurses" to="/app/nurses" icon={<ContactsOutlinedIcon />} selected={selected} setSelected={setSelected} />
+            <Item title="Coupons" to="/app/coupons" icon={<PieChartOutlineOutlinedIcon />} selected={selected} setSelected={setSelected} />
 
             <div className="sidebar__section-title">Pages</div>
-            <Item
-              title="Profile Form"
-              to="/form"
-              icon={<PersonOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Calendar"
-              to="/calendar"
-              icon={<CalendarTodayOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="FAQ Page"
-              to="/faq"
-              icon={<HelpOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            <Item title="FAQs" to="/app/faqs" icon={<HelpOutlineOutlinedIcon />} selected={selected} setSelected={setSelected} />
+            <Item title="Specialties" to="/app/specialties" icon={<TimelineOutlinedIcon />} selected={selected} setSelected={setSelected} />
 
             <div className="sidebar__section-title">Charts</div>
-            <Item
-              title="Bar Chart"
-              to="/bar"
-              icon={<BarChartOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Pie Chart"
-              to="/pie"
-              icon={<PieChartOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Line Chart"
-              to="/line"
-              icon={<TimelineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Geography Chart"
-              to="/geography"
-              icon={<MapOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            <Item title="Analytics" to="/app/analytics" icon={<BarChartOutlinedIcon />} selected={selected} setSelected={setSelected} />
+            <Item title="Geography" to="/app/geography" icon={<MapOutlinedIcon />} selected={selected} setSelected={setSelected} />
+          </Menu>
+        </SidebarContent>
+
+        <SidebarFooter>
+          <div className="sidebar-footer">
+            {!isCollapsed && <small>© {new Date().getFullYear()} Medilink</small>}
           </div>
-        </Menu>
+        </SidebarFooter>
       </ProSidebar>
     </div>
   );
 };
 
-export default Sidebar;
+export default SideBar;

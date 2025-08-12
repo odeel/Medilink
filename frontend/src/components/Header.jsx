@@ -1,8 +1,8 @@
 // src/components/Header/Header.jsx
 import React from "react";
 import { useTheme } from "@mui/material/styles"; // only using theme hook
-import { tokens } from "../../theme";
-import "./Header.css";
+import { tokens } from "../Theme";
+import "../styles/Header.css";
 
 const Header = ({ title, subtitle }) => {
   // read MUI theme and tokens

@@ -1,0 +1,9 @@
+.faq-form { display:flex; flex-direction: column; gap:8px; }
+.faq-form__label { font-size:13px; color:#222; }
+.faq-form__input { padding:8px; border-radius:6px; border:1px solid #ddd; }
+.faq-form__textarea { min-height:100px; padding:8px; border-radius:6px; border:1px solid #ddd; resize:vertical; }
+.faq-form__error { color:#b00020; background:#ffecee; padding:8px; border-radius:6px; }
+.faq-form__actions { display:flex; justify-content:flex-end; gap:8px; margin-top:8px; }
+.faq-form__btn { padding:8px 12px; border-radius:6px; border:none; cursor:pointer; }
+.faq-form__btn--submit { background:#2f9d87; color:#fff; }
+.faq-form__btn--cancel { background:#eee; color:#333; }

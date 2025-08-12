@@ -1,0 +1,9 @@
+.specialty-form { display:flex; flex-direction: column; gap:8px; }
+.specialty-form__label { font-size:13px; color:#222; }
+.specialty-form__input { padding:8px; border-radius:6px; border:1px solid #ddd; }
+.specialty-form__textarea { min-height:80px; padding:8px; border-radius:6px; border:1px solid #ddd; resize:vertical; }
+.specialty-form__error { color:#b00020; background:#ffecee; padding:8px; border-radius:6px; }
+.specialty-form__actions { display:flex; justify-content:flex-end; gap:8px; }
+.specialty-form__btn { padding:8px 12px; border-radius:6px; border:none; cursor:pointer; }
+.specialty-form__btn--submit { background:#2f9d87; color:#fff; }
+.specialty-form__btn--cancel { background:#eee; color:#333; }

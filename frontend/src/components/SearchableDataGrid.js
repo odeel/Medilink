@@ -2,8 +2,8 @@
 import React, { useMemo, useState } from "react";
 import { Box, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { tokens } from "../../theme";
-import "./SearchableDataGrid.css";
+import { tokens } from "../Theme";
+import "../styles/SearchableDataGrid.css";
 
 const SearchableDataGrid = ({ rows, columns, searchFields = [], height = "60vh", pageSize = 10 }) => {
   const theme = useTheme();

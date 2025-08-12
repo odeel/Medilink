@@ -1,0 +1,9 @@
+.nurse-form { display:flex; flex-direction: column; gap:8px; }
+.nurse-form__label { font-size:13px; color:#222; }
+.nurse-form__input { padding:8px; border-radius:6px; border:1px solid #ddd; }
+.nurse-form__textarea { min-height:80px; padding:8px; border-radius:6px; border:1px solid #ddd; resize:vertical; }
+.nurse-form__error { color:#b00020; background:#ffecee; padding:8px; border-radius:6px; }
+.nurse-form__actions { display:flex; justify-content:flex-end; gap:8px; }
+.nurse-form__btn { padding:8px 12px; border-radius:6px; border:none; cursor:pointer; }
+.nurse-form__btn--submit { background:#2f9d87; color:#fff; }
+.nurse-form__btn--cancel { background:#eee; color:#333; }
