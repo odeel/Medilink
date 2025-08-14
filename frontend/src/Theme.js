@@ -7,125 +7,133 @@ import { createTheme } from "@mui/material/styles";
  * Returns a full set of color groups used across the app.
  * Each group has shades 100..900 so components can read colors[group][300], [400], [600], etc.
  */
-export const tokens = (mode) => ({
-  ...(mode === "dark"
-    ? {
-        // dark mode tokens
-        grey: {
-          100: "#e0e0e0",
-          200: "#c2c2c2",
-          300: "#a3a3a3",
-          400: "#858585",
-          500: "#666666",
-          600: "#525252",
-          700: "#3d3d3d",
-          800: "#292929",
-          900: "#141414",
-        },
-        primary: {
-          100: "#dff5ea",
-          200: "#bff0d6",
-          300: "#9feac2",
-          400: "#7fe3ae",
-          500: "#5fdc9a",
-          600: "#4fb07d",
-          700: "#3f845f",
-          800: "#2f5842",
-          900: "#1f2c21",
-        },
-        greenAccent: {
-          100: "#e6fbf5",
-          200: "#ccf7eb",
-          300: "#b2f2e2",
-          400: "#98efd8",
-          500: "#7feacd",
-          600: "#65cfa5",
-          700: "#4ba77d",
-          800: "#32765b",
-          900: "#1a3b2d",
-        },
-        blueAccent: {
-          100: "#e6f0ff",
-          200: "#cce1ff",
-          300: "#b3d1ff",
-          400: "#99c2ff",
-          500: "#80b3ff",
-          600: "#6690cc",
-          700: "#4d6d99",
-          800: "#334966",
-          900: "#1a2533",
-        },
-        redAccent: {
-          100: "#ffe6e6",
-          200: "#ffcfcf",
-          300: "#ffb3b3",
-          400: "#ff9999",
-          500: "#ff7f7f",
-          600: "#cc6666",
-          700: "#994d4d",
-          800: "#663333",
-          900: "#331919",
-        },
-      }
-    : {
-        // light mode tokens
-        grey: {
-          100: "#141414",
-          200: "#292929",
-          300: "#3d3d3d",
-          400: "#525252",
-          500: "#666666",
-          600: "#858585",
-          700: "#a3a4ab",
-          800: "#c2c2c2",
-          900: "#e0e0e0",
-        },
-        primary: {
-          100: "#eaf8ef", // very light green background-ish
-          200: "#d5f1df",
-          300: "#c1e9cf",
-          400: "#abe2bf",
-          500: "#95dbaf", // main soft green
-          600: "#78b88f",
-          700: "#5b966f",
-          800: "#3e754f",
-          900: "#20532f",
-        },
-        greenAccent: {
-          100: "#f0fbf6",
-          200: "#e1f7ee",
-          300: "#cfefe0",
-          400: "#bde7d2",
-          500: "#aadfbf",
-          600: "#86c89f",
-          700: "#62b07f",
-          800: "#3e8a5f",
-          900: "#1f4d30",
-        },
-        blueAccent: {
-          100: "#f0f4ff",
-          200: "#e1e9ff",
-          300: "#cfd8ff",
-          400: "#bfc7ff",
-          500: "#b0b6ff",
-          600: "#8b89cc",
-          700: "#656699",
-          800: "#404266",
-          900: "#1a2033",
-        },
-        redAccent: {
-          100: "#fff0f0",
-          200: "#ffe1e1",
-          300: "#ffd1d1",
-          400: "#ffc2c2",
-          500: "#ffb3b3",
-          600: "#cc8f8f",
-          700: "#996b6b",
-          800: "#664646",
-          900: "#332323",
-        },
-      }),
-});
+export const tokens = (mode) => {
+  if (mode === "dark") {
+    return {
+      // dark mode tokens
+      grey: {
+        100: "#d6d6d6",
+        200: "#bfbfbf",
+        300: "#9f9f9f",
+        400: "#7f7f7f",
+        500: "#606060",
+        600: "#4a4a4a",
+        700: "#373737",
+        800: "#252525",
+        900: "#121212",
+      },
+      primary: {
+        100: "#d8e8de",
+        200: "#b1d1bd",
+        300: "#89b99c",
+        400: "#628f75",
+        500: "#3b654e",
+        600: "#2f4f3f",
+        700: "#223a30",
+        800: "#16261f",
+        900: "#0b130f",
+      },
+      greenAccent: {
+        100: "#eaf6ed",
+        200: "#d5efe1",
+        300: "#bfe7d3",
+        400: "#a9dfc6",
+        500: "#93d7b8",
+        600: "#75b995",
+        700: "#578a71",
+        800: "#39574d",
+        900: "#1b2b28",
+      },
+      blueAccent: {
+        100: "#e8f1ff",
+        200: "#d1e3ff",
+        300: "#b9d5ff",
+        400: "#9fbfff",
+        500: "#87a8ff",
+        600: "#6b86cc",
+        700: "#4d6099",
+        800: "#313a66",
+        900: "#161c33",
+      },
+      redAccent: {
+        100: "#ffeaea",
+        200: "#ffd5d5",
+        300: "#ffbfbf",
+        400: "#ff9f9f",
+        500: "#ff7f7f",
+        600: "#cc6161",
+        700: "#994949",
+        800: "#663030",
+        900: "#331818",
+      },
+      background: {
+        default: "#0f1614",
+      },
+    };
+  } else {
+    // light mode tokens (nacre white + soft sage / light-eye-resting greens)
+    return {
+      grey: {
+        100: "#141414",
+        200: "#292929",
+        300: "#3d3d3d",
+        400: "#525252",
+        500: "#666666",
+        600: "#858585",
+        700: "#a3a4ab",
+        800: "#c2c2c2",
+        900: "#e0e0e0",
+      },
+      primary: {
+        100: "#FBFAF6", // nacre / very light warm white
+        200: "#F5F4EE",
+        300: "#EFEDE6",
+        400: "#E8E7DE",
+        500: "#A8D3A1", // main soft sage / light green (used as primary)
+        600: "#8FC08A",
+        700: "#74A96F",
+        800: "#5C8556",
+        900: "#3C5D3B",
+      },
+      greenAccent: {
+        100: "#F7FBF7",
+        200: "#EEF7EE",
+        300: "#E6F0E6",
+        400: "#DCE9DC",
+        500: "#CFE0CF",
+        600: "#A8D3A1",
+        700: "#8FC08A",
+        800: "#6F9A6D",
+        900: "#476044",
+      },
+      blueAccent: {
+        100: "#f0f4ff",
+        200: "#e1e9ff",
+        300: "#cfd8ff",
+        400: "#bfc7ff",
+        500: "#b0b6ff",
+        600: "#8b89cc",
+        700: "#656699",
+        800: "#404266",
+        900: "#1a2033",
+      },
+      redAccent: {
+        100: "#fff0f0",
+        200: "#ffe1e1",
+        300: "#ffd1d1",
+        400: "#ffc2c2",
+        500: "#ffb3b3",
+        600: "#cc8f8f",
+        700: "#996b6b",
+        800: "#664646",
+        900: "#332323",
+      },
+      background: {
+        default: "#FBFAF6", // nacre white background
+      },
+    };
+  }
+};
 
 /**
  * themeSettings(mode)

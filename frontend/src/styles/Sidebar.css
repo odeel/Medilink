@@ -1,10 +1,156 @@
-/* Sidebar.css - minimal */
-.sidebar { width: 240px; }
-.sidebar__header { display:flex; justify-content:space-between; align-items:center; padding:10px; }
-.sidebar__toggle-btn { background: transparent; border: none; cursor: pointer; color: var(--sidebar-text); }
-.sidebar__profile { text-align:center; padding: 10px 0; }
-.sidebar__profile-avatar { width: 80px; height: 80px; border-radius: 50%; object-fit:cover; }
-.sidebar__profile-name { color: var(--sidebar-text); font-weight: 700; margin-top: 6px; }
-.sidebar__profile-role { color: var(--sidebar-active); font-size: 12px; }
-.sidebar__item-text { display:inline-block; margin-left: 8px; }
-.sidebar__menu-block .ps-menu-button:hover { background: var(--sidebar-hover) !important; }
+/* src/styles/Sidebar.css — goldy-white background, green writing, soft sage accents
+   Updated to use a few extra vars and to ensure icons use currentColor.
+*/
+
+/* Fallback variables (safe if your global vars are not imported) */
+:root{
+  --sb-bg: #FBFAF6;         /* nacre / warm, very soft white */
+  --sb-bg-inner: #F9F8F2;
+  --sb-text: #235C3B;       /* deep green for text/readability */
+  --sb-icon: #4F7A56;       /* icon color (slightly darker green) */
+  --sb-muted: #6b786d;      /* muted secondary text */
+  --sb-accent: #A8D3A1;     /* soft sage accent */
+  --sb-accent-600: #8FC08A; /* darker accent for hover/active */
+  --sb-border: #EFE7D8;     /* subtle border to separate content */
+  --sb-hover: rgba(143,192,138,0.12); /* subtle green wash */
+}
+
+/* ---------- Force light background on react-pro-sidebar internals ---------- */
+.sidebar,
+.sidebar .pro-sidebar-inner,
+.pro-sidebar,
+.pro-sidebar .pro-sidebar-inner,
+.pro-sidebar-inner,
+.ps-sidebar,
+.ps-sidebar * {
+  background: var(--sb-bg) !important;
+  background-color: var(--sb-bg) !important;
+  color: var(--sb-text) !important;
+  background-image: none !important;
+}
+
+/* wrapper */
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  border-right: 1px solid var(--sb-border);
+  box-shadow: 0 6px 20px rgba(46,58,46,0.04);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background 180ms ease;
+}
+
+/* header row */
+.sidebar__header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 14px;
+}
+.sidebar__header-title{
+  font-weight:700;
+  color: var(--sb-text);
+  letter-spacing:0.4px;
+}
+
+/* toggle button */
+.sidebar__toggle-btn{
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--sb-text);
+  padding:6px;
+  border-radius:6px;
+}
+.sidebar__toggle-btn:hover{
+  background: var(--sb-hover);
+  color: var(--sb-text);
+}
+
+/* profile block */
+.sidebar__profile{
+  text-align:center;
+  padding:12px 10px;
+}
+.sidebar__profile-avatar{
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  object-fit:cover;
+  display:inline-block;
+  border:2px solid var(--sb-bg-inner);
+  background: var(--sb-bg-inner);
+}
+.sidebar__profile-name{ color:var(--sb-text); font-weight:700; margin-top:8px; font-size:15px; }
+.sidebar__profile-role{ color:var(--sb-accent); font-size:12px; margin-top:4px; }
+
+/* section title */
+.sidebar__section-title{
+  color: var(--sb-muted);
+  font-weight:700;
+  margin: 12px 0 6px 20px;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:0.6px;
+}
+
+/* menu item text */
+.sidebar__item-text{
+  display:inline-block;
+  margin-left:8px;
+  color: var(--sb-text);
+  font-weight:600;
+}
+
+/* pro-sidebar inner items padding */
+.sidebar :where(.pro-inner-item){
+  padding: 8px 20px !important;
+}
+
+/* icon wrapper */
+.sidebar :where(.pro-icon-wrapper){
+  background: transparent !important;
+  color: var(--sb-icon) !important;
+}
+
+/* ensure svg icons inherit the wrapper color and never default to black */
+.sidebar :where(.pro-icon-wrapper) svg,
+.sidebar :where(.pro-icon-wrapper) svg * {
+  fill: currentColor !important;
+  color: inherit !important;
+  stroke: none !important;
+  opacity: 0.98;
+}
+
+/* hover state (both pro-sidebar and ps styles) */
+.sidebar :where(.pro-menu-item):hover,
+.sidebar .ps-menu-button:hover,
+.pro-sidebar :where(.pro-menu-item):hover,
+.pro-sidebar .ps-menu-button:hover {
+  background: var(--sb-hover) !important;
+  color: var(--sb-text) !important;
+}
+
+/* active (selected) state */
+.sidebar :where(.pro-menu-item.active),
+.sidebar .ps-menu-button.active,
+.pro-sidebar :where(.pro-menu-item.active),
+.pro-sidebar .ps-menu-button.active {
+  background: linear-gradient(90deg, rgba(143,192,138,0.14), rgba(143,192,138,0.06)) !important;
+  border-left: 3px solid var(--sb-accent) !important;
+  color: var(--sb-text) !important;
+}
+
+/* reduce visual noise: remove heavy shadows on inner icons */
+.sidebar :where(.pro-icon-wrapper svg){
+  filter: none;
+  opacity: 0.95;
+}
+
+/* responsive: collapsed view */
+@media (max-width: 900px){
+  .sidebar{ width:70px; }
+  .sidebar__section-title,
+  .sidebar__profile-name,
+  .sidebar__profile-role,
+  .sidebar__item-text { display:none; }
+}

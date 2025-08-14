@@ -1,4 +1,3 @@
-// src/global/SideBar.js
 import React, { useState } from "react";
 
 // v0.x API exports (ProSidebar + parts)
@@ -6,17 +5,14 @@ import {
   ProSidebar,
   Menu,
   MenuItem,
-  SubMenu,
   SidebarHeader,
   SidebarContent,
   SidebarFooter,
 } from "react-pro-sidebar";
-
-// v0.x requires the library CSS
 import "react-pro-sidebar/dist/css/styles.css";
 
 import { useTheme } from "@mui/material/styles";
-import { Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { tokens } from "../Theme"; // adjust if your Theme file path differs
 
 // MUI icons (allowed)
@@ -35,22 +31,22 @@ import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
 import "../styles/Sidebar.css"; // custom styles live here
 
-
-
-
 // Small wrapper for a menu item (keeps our code DRY)
-const Item = ({ title, to, icon, selected, setSelected }) => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+// Note: We no longer render a nested <Link/> — we call navigate() to keep routing consistent.
+const Item = ({ title, to, icon, isActive, onSelect, navigate }) => {
   return (
     <MenuItem
-      active={selected === title}
-      style={{ color: colors?.grey?.[100] || "#fff" }}
-      onClick={() => setSelected(title)}
+      className={`sidebar__item ${isActive ? "sidebar__item--active" : ""}`}
+      active={isActive}
+      style={{ cursor: "pointer" }}
+      onClick={() => {
+        onSelect(title);
+        // navigate() will perform client-side navigation with react-router
+        navigate(to);
+      }}
       icon={icon}
     >
       <div className="sidebar__item-text">{title}</div>
-      <Link to={to} />
     </MenuItem>
   );
 };
@@ -59,20 +55,44 @@ const SideBar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Overlook");
 
+  // CSS variables for Sidebar.css to pick up
+  const cssVars = {
+    "--sidebar-bg": colors?.primary?.[400] || "#1f2937",
+    "--sidebar-text": colors?.grey?.[100] || "#f8fafc",
+    "--sidebar-hover": colors?.blueAccent?.[400] || "#86f",
+    "--sidebar-active": colors?.greenAccent?.[500] || "#4cceac",
+  };
+
+  // Map of routes to determine isActive from pathname (handles refresh / deep link)
+  const PATHS = {
+    Overlook: "/app",
+    Clinics: "/app/clinics",
+    Medicines: "/app/medicines",
+    Doctors: "/app/doctors",
+    Nurses: "/app/nurses",
+    Coupons: "/app/coupons",
+    FAQs: "/app/faqs",
+    Specialties: "/app/specialties",
+    Analytics: "/app/analytics",
+    Geography: "/app/geography",
+  };
+
+  const isPathActive = (absPath) => {
+    // exact match or nested under the path (e.g. /app/clinics/123)
+    if (absPath === "/app") {
+      return pathname === "/app" || pathname === "/app/";
+    }
+    return pathname === absPath || pathname.startsWith(absPath + "/");
+  };
+
   return (
-    <div
-      className="sidebar-wrapper"
-      // pass theme colors as CSS variables for SideBar.css usage
-      style={{
-        "--sidebar-bg": colors?.primary?.[400] || "#1f2937",
-        "--sidebar-text": colors?.grey?.[100] || "#f8fafc",
-        "--sidebar-hover": colors?.blueAccent?.[400] || "#86f",
-        "--sidebar-active": colors?.greenAccent?.[500] || "#4cceac",
-      }}
-    >
+    <div className="sidebar-wrapper" style={cssVars}>
       <ProSidebar collapsed={isCollapsed}>
         <SidebarHeader>
           <div className="sidebar-header-inner">
@@ -105,23 +125,93 @@ const SideBar = () => {
           )}
 
           <Menu iconShape="square">
-            {/* Overlook = default */}
-            <Item title="Overlook" to="/app" icon={<HomeOutlinedIcon />} selected={selected} setSelected={setSelected} />
+            {/* Overlook = default (note: absolute path used) */}
+            <Item
+              title="Overlook"
+              to="/app"
+              icon={<HomeOutlinedIcon />}
+              isActive={isPathActive(PATHS.Overlook)}
+              onSelect={(t) => setSelected(t)}
+              navigate={navigate}
+            />
 
             <div className="sidebar__section-title">Data</div>
-            <Item title="Clinics" to="/app/clinics" icon={<PeopleOutlinedIcon />} selected={selected} setSelected={setSelected} />
-            <Item title="Medicines" to="/app/medicines" icon={<ReceiptOutlinedIcon />} selected={selected} setSelected={setSelected} />
-            <Item title="Doctors" to="/app/doctors" icon={<PersonOutlinedIcon />} selected={selected} setSelected={setSelected} />
-            <Item title="Nurses" to="/app/nurses" icon={<ContactsOutlinedIcon />} selected={selected} setSelected={setSelected} />
-            <Item title="Coupons" to="/app/coupons" icon={<PieChartOutlineOutlinedIcon />} selected={selected} setSelected={setSelected} />
+            <Item
+              title="Clinics"
+              to="/app/clinics"
+              icon={<PeopleOutlinedIcon />}
+              isActive={isPathActive(PATHS.Clinics)}
+              onSelect={(t) => setSelected(t)}
+              navigate={navigate}
+            />
+            <Item
+              title="Medicines"
+              to="/app/medicines"
+              icon={<ReceiptOutlinedIcon />}
+              isActive={isPathActive(PATHS.Medicines)}
+              onSelect={(t) => setSelected(t)}
+              navigate={navigate}
+            />
+            <Item
+              title="Doctors"
+              to="/app/doctors"
+              icon={<PersonOutlinedIcon />}
+              isActive={isPathActive(PATHS.Doctors)}
+              onSelect={(t) => setSelected(t)}
+              navigate={navigate}
+            />
+            <Item
+              title="Nurses"
+              to="/app/nurses"
+              icon={<ContactsOutlinedIcon />}
+              isActive={isPathActive(PATHS.Nurses)}
+              onSelect={(t) => setSelected(t)}
+              navigate={navigate}
+            />
+            <Item
+              title="Coupons"
+              to="/app/coupons"
+              icon={<PieChartOutlineOutlinedIcon />}
+              isActive={isPathActive(PATHS.Coupons)}
+              onSelect={(t) => setSelected(t)}
+              navigate={navigate}
+            />
 
             <div className="sidebar__section-title">Pages</div>
-            <Item title="FAQs" to="/app/faqs" icon={<HelpOutlineOutlinedIcon />} selected={selected} setSelected={setSelected} />
-            <Item title="Specialties" to="/app/specialties" icon={<TimelineOutlinedIcon />} selected={selected} setSelected={setSelected} />
+            <Item
+              title="FAQs"
+              to="/app/faqs"
+              icon={<HelpOutlineOutlinedIcon />}
+              isActive={isPathActive(PATHS.FAQs)}
+              onSelect={(t) => setSelected(t)}
+              navigate={navigate}
+            />
+            <Item
+              title="Specialties"
+              to="/app/specialties"
+              icon={<TimelineOutlinedIcon />}
+              isActive={isPathActive(PATHS.Specialties)}
+              onSelect={(t) => setSelected(t)}
+              navigate={navigate}
+            />
 
             <div className="sidebar__section-title">Charts</div>
-            <Item title="Analytics" to="/app/analytics" icon={<BarChartOutlinedIcon />} selected={selected} setSelected={setSelected} />
-            <Item title="Geography" to="/app/geography" icon={<MapOutlinedIcon />} selected={selected} setSelected={setSelected} />
+            <Item
+              title="Analytics"
+              to="/app/analytics"
+              icon={<BarChartOutlinedIcon />}
+              isActive={isPathActive(PATHS.Analytics)}
+              onSelect={(t) => setSelected(t)}
+              navigate={navigate}
+            />
+            <Item
+              title="Geography"
+              to="/app/geography"
+              icon={<MapOutlinedIcon />}
+              isActive={isPathActive(PATHS.Geography)}
+              onSelect={(t) => setSelected(t)}
+              navigate={navigate}
+            />
           </Menu>
         </SidebarContent>
 

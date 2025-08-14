@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import { ColorModeContext, useMode } from "./Theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
+
 import TopBar from "./global/TopBar"; // kept (not removed) per your request
 
 // --- ADDED: admin layout + pages (no changes to your existing login route) ---
